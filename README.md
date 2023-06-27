@@ -19,12 +19,12 @@ fn add = x, y {
 	x+y
 }
 
-let sum = add x, y
+let sum = add 2, 5 // => 7
 ```
 
 - SINGLE-LINE function declaration
 ```
 fn add = x, y { let sum = x+y; sum }
-let sum = add x, y
-println sum
+let sum = add 2, 5
+println sum // => 7
 ```

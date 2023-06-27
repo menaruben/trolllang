@@ -1,5 +1,2 @@
 let mystr = "Hello World"
 println mystr // prints Hello world
-println 1+2
-let PI = 3.14159265359
-println 3*PI*2

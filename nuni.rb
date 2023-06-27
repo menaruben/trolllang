@@ -2,14 +2,14 @@
 input_file_name = ARGV[0].dup
 input_file = File.open(input_file_name, "r")
 input_file_content = input_file.read()
-input_file_lines = input_file_content.split("\n")
+input_file_lines = input_file_content.split("\n").delete_if {|line| line == ""}
 input_lines = []
 
 input_file_lines.each do |line|
-  if line != ""
-    line = line.split("//")[0]
-    input_lines << line.split("//")[0]
-  end
+  # if line != ""
+  line = line.split("//")[0]
+  input_lines << line.split("//")[0]
+  # end
 end
 
 input_file.close()
@@ -22,7 +22,8 @@ output_file = File.open(output_file_name, "w")
 class Parser
   def initialize(lines, output_file)
     @keywords = {
-      "let" => -> { parse_let() } ,
+      "let" => -> { parse_let() },
+      "fn" => -> { parse_func_declaration() },
     }
     
     @std_funcs = {
@@ -36,7 +37,7 @@ class Parser
     @output_file = output_file
     @output_lines = []
     @line_idx = 0
-    @func_decl_mode = false
+    # @func_decl_mode = false
   end
   
   def parse_let()
@@ -63,13 +64,15 @@ class Parser
     @output_lines << func_str_new
   end
 
+  # in progress..
   def parse_func_declaration()
     func_decl_str = @lines[@line_idx].split "="
     func_name = func_decl_str[0][3..-1]
     func_name = func_name.delete " "
     @defined_funcs << func_name
 
-    args = func_decl_str[1].split("{")[0].split(",").delete(" ")
+    puts func_decl_str[1].split("{")[0].delete(" ").split(",")
+    args = func_decl_str[1].split("{")[0].delete(" ").split(",")
     args_str = args.join ", "
 
     scriptblock = func_decl_str[1].split("{")[1].split(";")
@@ -88,8 +91,11 @@ class Parser
       @keywords[option].call
     
     elsif @std_funcs.has_key? option
-      name, args = parse_func_usage()
+      parse_func_usage()
 
+    elsif @defined_funcs.include? option
+      parse_func_declaration()
+      
     else
       raise "ERROR on line #{@line_idx + 1}: '#{option}' not found"
     end

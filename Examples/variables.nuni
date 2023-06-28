@@ -1,0 +1,4 @@
+let favNum = 1/7
+let PI = 3.14159265359
+let PI = 3.141 // -> let's you change the variable value but sends warning to terminal
+

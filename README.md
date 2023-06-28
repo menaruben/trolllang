@@ -4,17 +4,32 @@
 let mystr = "Hello World"
 println mystr
 ```
-
-## Examples
-### Hello World
-```
-let mystr = "Hello World"
-println mystr // prints Hello world
-println 1+2
-```
 ```
 Hello World
-3
+```
+
+## Examples
+### Basic arithmetic
+> ⚠️ **_NOTE:_**  Make sure to always write arithemtic operations together (without spaces inbetween!). 
+```
+println 2+5   //  7
+println 2-5   // -3
+println 2*5   // 10 
+println 2/5.0 // 0.4 (atleast one needs to be a float in order to show decimal precision)
+println 2/5	  // 0
+println 2%5   // 2
+println 2**5  // 32
+```
+
+### defining variables
+```
+let favNumber = 1/7		 // -> mutable
+let PI = 3.14159265359 // -> immutable (constant)
+let PI = 3.141				 // let's you change variable but sends warning (ruby-style)
+```
+```
+./Examples/variables.rb:3: warning: already initialized constant PI
+./Examples/variables.rb:2: warning: previous definition of PI was here
 ```
 
 ### defining and using (single-line) functions

@@ -1,7 +1,7 @@
 # The Nuni Programming Language
 > ⚠️ **_WARNING:_** THIS LANGUAGE IS NOT FINISHED -> DO NOT USE FOR PRODUCTION OR SERIOUS USE CASES
 
-"Nuni" is a programming language written in Ruby. I am writing this language for the sake of fun and studying the process of creating programming languages - meaning that this language shouldn't be used for serious business cases. I am still trying my best to make a small but interesting language!
+"Nuni" is a programming language written in Ruby. I am writing this language for the sake of fun and studying the process of creating programming languages - meaning that this language shouldn't be used for serious business cases. I am still trying my best to make a small but interesting language! My goal is not to have an amazing looking and powerful language but to have fun!
 
 ## Hello World
 ```
@@ -11,18 +11,10 @@ println mystr
 ```
 Hello World
 ```
-
 ## Running nuni code
 ```
 ruby interpreter.rb <path-to-nunifile>
 ```
-
-## using the REPL
-```
-ruby repl.rb
-```
-![repl](./imgs/repl.png)
-
 ## Examples
 ### Basic arithmetic
 ```
@@ -96,3 +88,9 @@ fn add = x, y {
 
 let sum = add 2, 5 // => 7
 ```
+## using the REPL
+The REPL is not my main priority so I would not recommend to use it since I haven't really worked on it seriously. 
+```
+ruby repl.rb
+```
+![repl](./imgs/repl.png)

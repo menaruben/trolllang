@@ -1,4 +1,4 @@
-# Nuni
+# The Nuni Programming Language
 ## Hello World
 ```
 let mystr = "Hello World"

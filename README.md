@@ -99,6 +99,7 @@ fixed plans:
 - [ ] add option to translate to ruby or to just run the code
 - [ ] importing other nuni programms
 - [ ] implement std library in nuni
+- [ ] a good and WORKING REPL
 
 would be cool:
 - [ ] structs or classes?

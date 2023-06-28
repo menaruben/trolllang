@@ -1,11 +1,8 @@
 require_relative "parser.rb"
 
-lines = []
-i = 0
-
 while true
+  lines = []
   print "nuni > "
   lines << gets
   Parser.new(lines).parse()
-  i += 1
 end

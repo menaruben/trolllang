@@ -1,4 +1,6 @@
 # The Nuni Programming Language
+> ⚠️ **_WARNING:_** THIS LANGUAGE IS NOT FINISHED -> DO NOT USE FOR PRODUCTION OR SERIOUS USE CASES
+
 "Nuni" is a programming language written in Ruby. I am writing this language for the sake of fun and studying the process of creating programming languages - meaning that this language shouldn't be used for serious business cases. I am still trying my best to make a small but interesting language!
 
 ## Hello World
@@ -15,17 +17,21 @@ Hello World
 ruby interpreter.rb <path-to-nunifile>
 ```
 
+## using the REPL
+```
+ruby repl.rb
+```
+![repl](./imgs/repl.png)
+
 ## Examples
 ### Basic arithmetic
-> ⚠️ **_NOTE:_**  Make sure to always write arithemtic operations together (without spaces inbetween!).
 ```
-println 2+5   //  7
-println 2-5   // -3
-println 2*5   // 10
-println 2/5.0 // 0.4 (atleast one needs to be a float in order to show decimal precision)
-println 2/5   // 0
-println 2%5   // 2
-println 2**5  // 32
+println 2 + 5   // =>   7
+println 2 - 5   // =>  -3
+println 2 * 5   // =>  10
+println 2 / 5.0 // => 0.4 (atleast one needs to be a float in order to show decimal precision)
+println 2 % 5   // =>   2
+println 2**5    // =>  32
 ```
 
 ### defining variables
@@ -70,7 +76,7 @@ println test
 - [ ] loops (while, for and maybe foreach)
 - [ ] type hinting
 - [ ] importing other nuni programms
-- [ ] structs or classes
+- [ ] structs or classes?
 - [ ] MULTI-LINE function declaration with nuni syntax, Ex:
 ```
 fn add = x, y {

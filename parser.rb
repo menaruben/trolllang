@@ -73,8 +73,56 @@ class Parser
     "def #{func_name}(#{args_str}); #{func_lines_str}; end\n"
   end
 
+  def parse_statement_block(statement_block)
+    fields = statement_block.split " "
+    statement = fields[0]
+    if statement != "else"
+      condition = fields[1]
+      script_block = fields[3..-1]
+
+    else
+      script_block = fields[2..-1]    
+    end
+    
+    statement_code = []
+
+    if statement != "else"
+      statement_code[0] = "#{statement} #{condition}\n"
+
+    else
+      statement_code[0] = "#{statement}\n"
+    end
+    
+    current_line = []
+    script_block.each_with_index do |sb, index|
+      if index == 0
+        sb = "\t" + sb
+        current_line << sb
+      else
+        if sb.include? ";"
+          sb = sb.gsub(";", "\n")
+          current_line << sb
+          statement_code << parse_line(current_line.join(" ")[1..-1])
+          current_line = []
+        else
+          current_line << sb
+        end
+      end
+    end
+
+    statement_code.join(" ")
+  end
+  
   def parse_if_statement(line)
-    #! TODO: Implement logic for parsing if statements here
+    statement_blocks = line.split "}"
+    statement_strs = []
+    
+    statement_blocks.each do |statement|
+      statement_strs <<  parse_statement_block(statement)
+    end
+
+    statement_strs << "end"
+    statement_strs
   end
 
   def parse_line(line)

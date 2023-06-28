@@ -61,6 +61,15 @@ println test
 14
 ```
 
+### if-statements
+```
+let i = 2
+if i<2 { println "yes"; } elsif==2 { println "the same!"; } else { println "no"; }
+```
+```
+the same!
+```
+
 ## Future ideas (by priority)
 - [x] SINGLE-LINE function declaration with nuni syntax, Ex:
 ```
@@ -71,7 +80,8 @@ println sum
 let test = 7 + (add 2, 5)
 println test
 ```
-- [ ] if-else statement
+- [x] if-else statement
+- [ ] string interpolation / concatenation
 - [ ] add option to translate to ruby or to just run the code
 - [ ] loops (while, for and maybe foreach)
 - [ ] type hinting

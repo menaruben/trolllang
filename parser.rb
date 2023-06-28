@@ -3,7 +3,8 @@ class Parser
     @keywords = {
       "let" => method(:parse_let),
       "fn" => method(:parse_func_declaration),
-      "if" => method(:parse_if_statement)
+      "if" => method(:parse_if_statement),
+      "for" => method(:parse_for_loop),
     }
 
     @std_funcs = {
@@ -125,6 +126,51 @@ class Parser
     statement_strs
   end
 
+  def parse_script_block(line)
+    script_block = line.split("{")[1].split(";")[0..-2]
+    loopcode = []
+
+    script_block.each do |sb|
+      parsed_line = parse_line(sb) + "\n"
+      puts parsed_line
+      loopcode << parsed_line
+    end
+    loopcode
+  end
+  
+  def parse_scriptblock_lines(line)
+    scriptblock = line.split("{")[1].split(";")[0..-2]
+    scriptblock_lines = []
+
+    scriptblock.each do |sb|
+      if sb.start_with?(" ") && sb.end_with?(" ")
+        sb = sb[1..-2]
+        scriptblock_lines << parse_line(sb)
+        
+      elsif sb.start_with?(" ")
+        sb = sb[1..-1]
+        scriptblock_lines << parse_line(sb)
+
+      elsif sb.end_with?(" ")
+        sb = sb[0..-2]
+        scriptblock_lines << parse_line(sb)
+
+      else
+        scriptblock_lines << parse_line(sb)
+      end
+    end
+
+    scriptblock_lines
+  end
+  
+  def parse_for_loop(line)
+    iter_str = line.split("{")[0] + "do"
+    scriptblock_lines = parse_scriptblock_lines(line)
+    scriptblock_str = scriptblock_lines.join("; ")
+    for_loop_str = "#{iter_str} #{scriptblock_str} end"
+    for_loop_str
+  end
+  
   def parse_line(line)
     option = line.split(" ")[0]
     @line_idx += 1
@@ -137,7 +183,7 @@ class Parser
       raise "ERROR on line #{@line_idx}: '#{option}' not found"
     end
   end
-
+  
   def parse
     @output_lines = @lines.map { |line| parse_line(line) }.compact
 

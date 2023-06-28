@@ -1,0 +1,2 @@
+let i = 2
+for n in 0..10 { let prod = i*n; println prod; }

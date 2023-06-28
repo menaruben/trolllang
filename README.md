@@ -86,6 +86,26 @@ if i<2 { println "yes"; } elsif==2 { println "the same!"; } else { println "no";
 the same!
 ```
 
+### loops
+#### for-loops
+```
+let i = 2
+for n in 0..10 { let prod = i*n; println prod; }
+```
+```
+0
+2
+4
+6
+8
+10
+12
+14
+16
+18
+20
+```
+
 ## Future ideas (by priority)
 fixed plans:
 - [x] SINGLE-LINE function declaration with nuni syntax, Ex:
@@ -93,7 +113,7 @@ fixed plans:
 - [ ] string interpolation / concatenation
 - [ ] loops
 	- [ ] while
-	- [ ] for
+	- [x] for
 	- [ ] foreach
 - [ ] type hinting
 - [ ] add option to translate to ruby or to just run the code

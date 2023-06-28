@@ -34,7 +34,7 @@ Calculating..
 ```
 
 ## Future ideas
-- MULTI-LINE function declaration
+- MULTI-LINE function declaration with nuni syntax
 ```
 fn add = x, y {
 	x+y
@@ -43,7 +43,7 @@ fn add = x, y {
 let sum = add 2, 5 // => 7
 ```
 
-- SINGLE-LINE function declaration
+- SINGLE-LINE function declaration with nuni syntax
 ```
 fn add = x, y { let sum = x+y; sum }
 let sum = add 2, 5

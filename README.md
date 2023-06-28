@@ -54,7 +54,8 @@ Calculating..
 - MULTI-LINE function declaration with nuni syntax, Ex:
 ```
 fn add = x, y {
-	x+y
+	let sum = x + y
+	sum
 }
 
 let sum = add 2, 5 // => 7
@@ -65,7 +66,7 @@ let sum = add 2, 5 // => 7
 - structs or classes
 - SINGLE-LINE function declaration with nuni syntax, Ex:
 ```
-fn add = x, y { let sum = x+y; sum }
+fn add = x, y { let sum = x+y; sum; }
 let sum = add 2, 5
 println sum // => 7
 ```

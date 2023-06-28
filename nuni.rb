@@ -51,56 +51,77 @@ class Parser
     end
 
     var_name = key[4..-1]
-    @output_lines << "#{var_name} = #{value}\n"
+    @output_lines << "#{var_name} = eval('#{value}')\n"
   end
 
   def parse_func_usage()
-    func_str = @lines[@line_idx].split " "
+    func_str = @lines[@line_idx].delete(",").split(" ")
     function_name = func_str[0]
     args = func_str[1..-1]
     args_str = args.join ", "
 
-    func_str_new = "#{@std_funcs[function_name]} #{args_str}\n"
+    if @std_funcs.has_key? function_name
+      func_str_new = "#{@std_funcs[function_name]} #{args_str}\n"
+
+    else @defined_funcs.include? function_name
+      func_str_new = "#{function_name} #{args_str}\n"
+    
+    end
     @output_lines << func_str_new
   end
 
   # in progress..
   def parse_func_declaration()
     func_decl_str = @lines[@line_idx].split "="
-    func_name = func_decl_str[0][3..-1]
-    func_name = func_name.delete " "
+    func_name = func_decl_str[0].split(" ")[1]
     @defined_funcs << func_name
 
-    puts func_decl_str[1].split("{")[0].delete(" ").split(",")
     args = func_decl_str[1].split("{")[0].delete(" ").split(",")
     args_str = args.join ", "
 
-    scriptblock = func_decl_str[1].split("{")[1].split(";")
-    scriptblock_str = scriptblock.join("; ").delete "}"
+    script_block = @lines[@line_idx].split("{")[1].delete("}").split(";")[0..-2]
+    func_lines = []
+    script_block.each do |line|
+      if line.start_with?(" ") && line.end_with?(" ")
+        func_lines << line[1..-2]
+
+      elsif line.start_with?(" ")
+        func_lines << line[1..-1]
+
+      elsif line.end_with?(" ")
+        func_lines << line[0..-2]
+
+      else
+        func_lines << line
+      end
+    end
+    func_lines_str = func_lines.join("; ")
     
-    func_decl = "def #{func_name}(#{args_str}); #{scriptblock} end"
+    func_decl = "def #{func_name}(#{args_str}); #{func_lines_str}; end\n"
+    # puts func_decl
 
     @output_lines << func_decl
   end
   
   def parse()
     @lines.each do |line|
-    option = line.split(" ")[0]
+      option = line.split(" ")[0]
 
-    if @keywords.has_key? option
-      @keywords[option].call
+      if @keywords.has_key? option
+        @keywords[option].call
     
-    elsif @std_funcs.has_key? option
-      parse_func_usage()
+      elsif @std_funcs.has_key? option
+        parse_func_usage()
 
-    elsif @defined_funcs.include? option
-      parse_func_declaration()
+      elsif @defined_funcs.include? option
+        # parse_defined_func()
+        parse_func_usage()
       
-    else
-      raise "ERROR on line #{@line_idx + 1}: '#{option}' not found"
-    end
+      else
+        raise "ERROR on line #{@line_idx + 1}: '#{option}' not found"
+      end
     
-    @line_idx += 1
+      @line_idx += 1
     end
 
     @output_lines.each do |line|

@@ -1,2 +1,6 @@
-fn add = x, y { puts x+y }
+fn add = x, y { sum = x+y; sum; } // single line function definition
 add 2, 5
+
+println "Calculating.."
+let test = 7 + (add 2, 5)
+println test

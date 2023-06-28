@@ -26,7 +26,14 @@ println 2 % 5   // =>   2
 println 2**5    // =>  32
 ```
 
+### Comments
+```
+// prints hello world
+println "Hello World"
+```
+
 ### defining variables
+> ⚠️ **_NOTE:_** Hashes are not yet supported. 
 ```
 let favNumber = 1/7    // -> mutable
 let PI = 3.14159265359 // -> immutable (constant)
@@ -35,6 +42,23 @@ let PI = 3.141	       // let's you change variable but sends warning (ruby-style
 ```
 ./Examples/variables.rb:3: warning: already initialized constant PI
 ./Examples/variables.rb:2: warning: previous definition of PI was here
+```
+
+### data types
+```
+let myint = 1                                           // integer
+let myfloat = 2.0                                       // float
+let myconst = 3.14159265359                     // constant
+let mybool = true                                       // boolean
+let myarr = [1, 2, 3, 4]                // array
+let myarr2 = myarr.map { |n| n*2 }      // you can even use ruby code when declaring a variable!
+
+println myint
+println myfloat
+println myconst
+println mybool
+println myarr
+println myarr2
 ```
 
 ### defining and using (single-line) functions
@@ -63,31 +87,23 @@ the same!
 ```
 
 ## Future ideas (by priority)
+fixed plans:
 - [x] SINGLE-LINE function declaration with nuni syntax, Ex:
-```
-fn add = x, y { let sum = x+y; return sum; } // single line function definition
-let sum = add 2, 5
-println sum
-
-let test = 7 + (add 2, 5)
-println test
-```
 - [x] if-else statement
 - [ ] string interpolation / concatenation
-- [ ] add option to translate to ruby or to just run the code
-- [ ] loops (while, for and maybe foreach)
+- [ ] loops
+	- [ ] while
+	- [ ] for
+	- [ ] foreach
 - [ ] type hinting
+- [ ] add option to translate to ruby or to just run the code
+
+would be cool:
 - [ ] importing other nuni programms
 - [ ] structs or classes?
 - [ ] MULTI-LINE function declaration with nuni syntax, Ex:
-```
-fn add = x, y {
-	let sum = x + y
-	sum
-}
+- [ ] MULTI-LINE if-else statements with nuni syntax
 
-let sum = add 2, 5 // => 7
-```
 ## using the REPL
 The REPL is not my main priority so I would not recommend to use it since I haven't really worked on it seriously. 
 ```

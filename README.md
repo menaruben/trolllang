@@ -25,9 +25,9 @@ println 2**5  // 32
 
 ### defining variables
 ```
-let favNumber = 1/7		 // -> mutable
+let favNumber = 1/7    // -> mutable
 let PI = 3.14159265359 // -> immutable (constant)
-let PI = 3.141				 // let's you change variable but sends warning (ruby-style)
+let PI = 3.141	       // let's you change variable but sends warning (ruby-style)
 ```
 ```
 ./Examples/variables.rb:3: warning: already initialized constant PI

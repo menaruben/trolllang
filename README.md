@@ -97,9 +97,10 @@ fixed plans:
 	- [ ] foreach
 - [ ] type hinting
 - [ ] add option to translate to ruby or to just run the code
+- [ ] importing other nuni programms
+- [ ] implement std library in nuni
 
 would be cool:
-- [ ] importing other nuni programms
 - [ ] structs or classes?
 - [ ] MULTI-LINE function declaration with nuni syntax, Ex:
 - [ ] MULTI-LINE if-else statements with nuni syntax

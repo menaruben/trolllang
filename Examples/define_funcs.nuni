@@ -1,6 +1,6 @@
-fn add = x, y { sum = x+y; sum; } // single line function definition
-add 2, 5
+fn add = x, y { let sum = x+y; return sum; } // single line function definition
+let sum = add 2, 5
+println sum
 
-println "Calculating.."
 let test = 7 + (add 2, 5)
 println test

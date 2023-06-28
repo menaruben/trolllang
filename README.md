@@ -1,5 +1,5 @@
 # The Nuni Programming Language
-"Nuni" is a programming language written in Ruby. I am writing this language for the sake of fun and studying the process of creating programming languages - meaning that this language shouldn't be used for serious business cases. I am still trying my best to make a small but interesting language! 
+"Nuni" is a programming language written in Ruby. I am writing this language for the sake of fun and studying the process of creating programming languages - meaning that this language shouldn't be used for serious business cases. I am still trying my best to make a small but interesting language!
 
 ## Hello World
 ```
@@ -10,13 +10,18 @@ println mystr
 Hello World
 ```
 
+## Running nuni code
+```
+ruby interpreter.rb <path-to-nunifile>
+```
+
 ## Examples
 ### Basic arithmetic
-> ⚠️ **_NOTE:_**  Make sure to always write arithemtic operations together (without spaces inbetween!). 
+> ⚠️ **_NOTE:_**  Make sure to always write arithemtic operations together (without spaces inbetween!).
 ```
 println 2+5   //  7
 println 2-5   // -3
-println 2*5   // 10 
+println 2*5   // 10
 println 2/5.0 // 0.4 (atleast one needs to be a float in order to show decimal precision)
 println 2/5   // 0
 println 2%5   // 2
@@ -38,27 +43,30 @@ let PI = 3.141	       // let's you change variable but sends warning (ruby-style
 Currently the definition of single-line functions relies on the usage of ruby syntax in the
 scriptblock `{}`. This will be changed as soon as possible so that we can only use `nuni` syntax!
 ```
-fn add = x, y { sum = x+y; sum; } // single line function definition
-add 2, 5
+fn add = x, y { let sum = x+y; return sum; } // single line function definition
+let sum = add 2, 5
+println sum
 
-println "Calculating.."
 let test = 7 + (add 2, 5)
 println test
 ```
 ```
-Calculating..
+7
 14
 ```
 
 ## Future ideas (by priority)
-- [ ] SINGLE-LINE function declaration with nuni syntax, Ex:
+- [x] SINGLE-LINE function declaration with nuni syntax, Ex:
 ```
-fn add = x, y { let sum = x+y; sum; }
+fn add = x, y { let sum = x+y; return sum; } // single line function definition
 let sum = add 2, 5
-println sum // => 7
+println sum
+
+let test = 7 + (add 2, 5)
+println test
 ```
-- [ ] add option to translate to ruby or to just run the code
 - [ ] if-else statement
+- [ ] add option to translate to ruby or to just run the code
 - [ ] loops (while, for and maybe foreach)
 - [ ] type hinting
 - [ ] importing other nuni programms

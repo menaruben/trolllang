@@ -1,29 +1,9 @@
-# get nuni file content
-input_file_name = ARGV[0].dup
-input_file = File.open(input_file_name, "r")
-input_file_content = input_file.read()
-input_file_lines = input_file_content.split("\n").delete_if {|line| line == ""}
-input_lines = []
-
-input_file_lines.each do |line|
-  # if line != ""
-  line = line.split("//")[0]
-  input_lines << line.split("//")[0]
-  # end
-end
-
-input_file.close()
-
-# prepare ruby / output file
-input_file_name.slice! "nuni"
-output_file_name = input_file_name + "rb"
-output_file = File.open(output_file_name, "w")
-
 class Parser
-  def initialize(lines, output_file)
+  def initialize(lines, to_translate=false, output_file="")
     @keywords = {
       "let" => -> { parse_let() },
       "fn" => -> { parse_func_declaration() },
+      "if" => -> { parse_if_statement() },
     }
     
     @std_funcs = {
@@ -31,8 +11,9 @@ class Parser
       "print" => "print"
     }
 
+    @to_translate = to_translate
+
     @defined_funcs = []
-    
     @lines = lines
     @output_file = output_file
     @output_lines = []
@@ -57,8 +38,7 @@ class Parser
   def parse_func_usage()
     func_str = @lines[@line_idx].delete(",").split(" ")
     function_name = func_str[0]
-    args = func_str[1..-1]
-    args_str = args.join ", "
+    args_str = @lines[@line_idx][function_name.length()..-1]
 
     if @std_funcs.has_key? function_name
       func_str_new = "#{@std_funcs[function_name]} #{args_str}\n"
@@ -70,7 +50,6 @@ class Parser
     @output_lines << func_str_new
   end
 
-  # in progress..
   def parse_func_declaration()
     func_decl_str = @lines[@line_idx].split "="
     func_name = func_decl_str[0].split(" ")[1]
@@ -95,13 +74,27 @@ class Parser
         func_lines << line
       end
     end
+    func_lines.each do |line|
+      option = line.split(" ")[0]
+
+      if @keywords.has_key? option
+        @keyords[option].call
+
+      elsif @std_funcs.has_key?(option) || @defined_funcs.include?(option)
+        parse_func_usage()
+        
+      else
+        raise "ERROR on line #{@line_idx + 1}: '#option' not found"
+    end
+    
     func_lines_str = func_lines.join("; ")
     
     func_decl = "def #{func_name}(#{args_str}); #{func_lines_str}; end\n"
-    # puts func_decl
-
     @output_lines << func_decl
   end
+
+  # def parse_if_statement()
+  # end
   
   def parse()
     @lines.each do |line|
@@ -110,13 +103,9 @@ class Parser
       if @keywords.has_key? option
         @keywords[option].call
     
-      elsif @std_funcs.has_key? option
+      elsif @std_funcs.has_key?(option) || @defined_funcs.include?(option)
         parse_func_usage()
 
-      elsif @defined_funcs.include? option
-        # parse_defined_func()
-        parse_func_usage()
-      
       else
         raise "ERROR on line #{@line_idx + 1}: '#{option}' not found"
       end
@@ -124,15 +113,21 @@ class Parser
       @line_idx += 1
     end
 
+    if @to_translate
+      translate_to_ruby()
+    else
+      run_code()
+    end
+  end
+
+  def translate_to_ruby()
     @output_lines.each do |line|
       @output_file.write line
     end
   end
+  
+  def run_code()
+    ruby_code = @output_lines.join()
+    eval(ruby_code)
+  end
 end
-
-
-# parse code
-p = Parser.new(input_lines, output_file)
-p.parse()
-
-output_file.close()

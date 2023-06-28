@@ -51,7 +51,19 @@ Calculating..
 ```
 
 ## Future ideas (by priority)
-- MULTI-LINE function declaration with nuni syntax, Ex:
+- [ ] SINGLE-LINE function declaration with nuni syntax, Ex:
+```
+fn add = x, y { let sum = x+y; sum; }
+let sum = add 2, 5
+println sum // => 7
+```
+- [ ] add option to translate to ruby or to just run the code
+- [ ] if-else statement
+- [ ] loops (while, for and maybe foreach)
+- [ ] type hinting
+- [ ] importing other nuni programms
+- [ ] structs or classes
+- [ ] MULTI-LINE function declaration with nuni syntax, Ex:
 ```
 fn add = x, y {
 	let sum = x + y
@@ -59,14 +71,4 @@ fn add = x, y {
 }
 
 let sum = add 2, 5 // => 7
-```
-- loops (while, for and maybe foreach)
-- type hinting
-- importing other nuni programms
-- structs or classes
-- SINGLE-LINE function declaration with nuni syntax, Ex:
-```
-fn add = x, y { let sum = x+y; sum; }
-let sum = add 2, 5
-println sum // => 7
 ```

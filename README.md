@@ -1,7 +1,7 @@
-# The Nuni Programming Language
+# The Trolllang Programming Language
 > ⚠️ **_WARNING:_** THIS LANGUAGE IS NOT FINISHED -> DO NOT USE FOR PRODUCTION OR SERIOUS USE CASES
 
-"Nuni" is a programming language written in Ruby. I am writing this language for the sake of fun and studying the process of creating programming languages - meaning that this language shouldn't be used for serious business cases. I am still trying my best to make a small but interesting language! My goal is not to have an amazing looking and powerful language but to have fun!
+"Trolllang" is a programming language written in Ruby. I am writing this language for the sake of fun - meaning that this language shouldn't be used for serious business cases. My goal is not to have an amazing looking and powerful language but to have fun!
 I might add some fun syntax like `;;;`, `;;` and `;` delimiters and more to make the language sort of like a "challenge" to program in! 
 
 ## Hello World
@@ -12,7 +12,7 @@ println mystr
 ```
 Hello World
 ```
-## Running nuni code
+## Running trolllang code
 ```
 ruby interpreter.rb <path-to-nunifile>
 ```
@@ -165,25 +165,25 @@ the same!
 ### string interpolation / concatenation
 You can just use the Ruby syntax!
 ```
-let name = "Nuni"
+let name = "troll"
 let greet = "Hello #{name}!"
 println greet
 println "Goodbye #{name}!"
 ```
 ```
-Hello Nuni!
-Goodbye Nuni!
+Hello troll!
+Goodbye troll!
 ```
 
 ### embedding ruby
 ```
-println "Hello Nuni"
+println "Hello troll"
 # puts "Hello Ruby!"
 # [1, 2, 3, 4].each do |n| puts n end
 println 2+3
 ```
 ```
-Hello Nuni
+Hello troll
 Hello Ruby!
 1
 2
@@ -194,7 +194,7 @@ Hello Ruby!
 
 ## Future ideas (by priority)
 fixed plans:
-- [x] SINGLE-LINE function declaration with nuni syntax, Ex:
+- [x] SINGLE-LINE function declaration
 - [x] if-else statement
 - [x] string interpolation / concatenation (you can just use the ruby `#{your_var}` syntax!)
 - [x] ruby syntax embedding with `#` at the start of line
@@ -204,18 +204,4 @@ fixed plans:
 	- [ ] foreach
 - [ ] type hinting
 - [ ] add option to translate to ruby or to just run the code
-- [ ] importing other nuni programms
-- [ ] implement std library in nuni
-- [ ] a good and WORKING REPL
-
-would be cool:
-- [ ] structs or classes?
-- [ ] MULTI-LINE function declaration with nuni syntax, Ex:
-- [ ] MULTI-LINE if-else statements with nuni syntax
-
-## using the REPL
-The REPL is not my main priority so I would not recommend to use it since I haven't really worked on it seriously. 
-```
-ruby repl.rb
-```
-![repl](./imgs/repl.png)
+- [ ] importing other troll programms

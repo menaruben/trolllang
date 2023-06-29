@@ -1,5 +1,5 @@
 # The Trolllang Programming Language
-> ⚠️ **_WARNING:_** THIS LANGUAGE IS NOT FINISHED -> DO NOT USE FOR PRODUCTION OR SERIOUS USE CASES
+> ⚠️ **_WARNING:_** DO NOT USE IN PRODUCTION
 
 "Trolllang" is a programming language written in Ruby. I am writing this language for the sake of fun - meaning that this language shouldn't be used for serious business cases. My goal is not to have an amazing looking and powerful language but to have fun!
 I might add some fun syntax like `;;;`, `;;` and `;` delimiters and more to make the language sort of like a "challenge" to program in! 
@@ -14,7 +14,7 @@ Hello World
 ```
 ## Running trolllang code
 ```
-ruby interpreter.rb <path-to-nunifile>
+ruby interpreter.rb <path-to-trollfile>
 ```
 ## Examples
 ### Basic arithmetic
@@ -47,7 +47,7 @@ let PI = 3.141	       // let's you change variable but sends warning (ruby-style
 
 ### data types
 ```
-let myint = 1														// integer
+let myint = 1							// integer
 let myfloat = 2.0                       // float
 let myconst = 3.14159265359             // constant
 let mybool = true                       // boolean
@@ -192,8 +192,7 @@ Hello Ruby!
 5
 ```
 
-## Future ideas (by priority)
-fixed plans:
+## ideas (by priority)
 - [x] SINGLE-LINE function declaration
 - [x] if-else statement
 - [x] string interpolation / concatenation (you can just use the ruby `#{your_var}` syntax!)
@@ -202,6 +201,5 @@ fixed plans:
 	- [ ] while
 	- [x] for
 	- [ ] foreach
-- [ ] type hinting
 - [ ] add option to translate to ruby or to just run the code
 - [ ] importing other troll programms

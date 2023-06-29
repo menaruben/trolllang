@@ -156,7 +156,7 @@ for i in 0..20 [ if i%2==0 ( println i; );; ]
 ### if-statements
 ```
 let i = 2
-if i<2 ( println "yes"; ) elsif==2 ( println "the same!"; ) else ( println "no"; )
+if i<2 ( println "yes"; ) elsif i==2 ( println "the same!"; ) else ( println "no"; )
 ```
 ```
 the same!

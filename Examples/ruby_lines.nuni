@@ -1,0 +1,4 @@
+println "Hello Nuni"
+# puts "Hello Ruby!"
+# [1, 2, 3, 4].each do |n| puts n end
+println 2+3

@@ -5,6 +5,8 @@ class Parser
       "fn" => method(:parse_func_declaration),
       "if" => method(:parse_if_statement),
       "for" => method(:parse_for_loop),
+      "import" => method(:import),
+      "#" => method(:eval_ruby_lines),
     }
 
     @std_funcs = {
@@ -41,13 +43,16 @@ class Parser
 
   def parse_func_declaration(line)
     func_decl_str = line.split("=")
+    # puts func_decl_str
     func_name = func_decl_str[0].split(" ")[1]
+    # puts func_name
     @defined_funcs << func_name
 
     args = func_decl_str[1].split("{")[0].delete(" ").split(",")
     args_str = args.join(", ")
 
-    script_block = line.split("{")[1].delete("}").split(";")[0..-2]
+    script_block = line.split("{", 2)[1].delete("}").split(";;;")[0..-2]
+    # puts script_block
     func_lines = script_block.map(&:strip)
 
     func_lines_ruby = []
@@ -70,7 +75,8 @@ class Parser
       end
     end
     func_lines_str = func_lines_ruby.join("; ")
-
+    # puts func_lines_str
+    
     "def #{func_name}(#{args_str}); #{func_lines_str}; end\n"
   end
 
@@ -115,7 +121,7 @@ class Parser
   end
   
   def parse_if_statement(line)
-    statement_blocks = line.split "}"
+    statement_blocks = line.split ")"
     statement_strs = []
     
     statement_blocks.each do |statement|
@@ -132,14 +138,13 @@ class Parser
 
     script_block.each do |sb|
       parsed_line = parse_line(sb) + "\n"
-      puts parsed_line
       loopcode << parsed_line
     end
     loopcode
   end
   
   def parse_scriptblock_lines(line)
-    scriptblock = line.split("{")[1].split(";")[0..-2]
+    scriptblock = line.split("[")[1].split(";;")[0..-2]
     scriptblock_lines = []
 
     scriptblock.each do |sb|
@@ -164,11 +169,33 @@ class Parser
   end
   
   def parse_for_loop(line)
-    iter_str = line.split("{")[0] + "do"
+    iter_str = line.split("[")[0] + "do"
+    # puts iter_str
     scriptblock_lines = parse_scriptblock_lines(line)
     scriptblock_str = scriptblock_lines.join("; ")
     for_loop_str = "#{iter_str} #{scriptblock_str} end"
     for_loop_str
+  end
+  
+  def import(file)
+    file = file.split(" ")[1]
+    # puts file
+    parsed_lines = []
+    File.readlines(file). each do |line|
+      parsed_line = parse_line(line)
+      parsed_lines << parsed_line + "\n"
+    end
+    parsed_lines.join("")
+  end
+  
+  def eval_ruby_lines(line)
+    ruby_line = line.split("#")[1]
+
+    if line.start_with? " "
+      ruby_line = ruby_line[1..-1] + "\n"
+      ruby_line
+    end
+    ruby_line + "\n"
   end
   
   def parse_line(line)
@@ -200,6 +227,7 @@ class Parser
 
   def run_code
     ruby_code = @output_lines.join("")
+    # puts ruby_code
     eval(ruby_code)
   end
 end

@@ -1,4 +1,4 @@
-fn add = x, y { let sum = x+y; return sum; } // single line function definition
+fn add = x, y { let sum = x+y;;; return sum;;; } // single line function definition
 let sum = add 2, 5
 println sum
 

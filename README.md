@@ -2,6 +2,7 @@
 > ⚠️ **_WARNING:_** THIS LANGUAGE IS NOT FINISHED -> DO NOT USE FOR PRODUCTION OR SERIOUS USE CASES
 
 "Nuni" is a programming language written in Ruby. I am writing this language for the sake of fun and studying the process of creating programming languages - meaning that this language shouldn't be used for serious business cases. I am still trying my best to make a small but interesting language! My goal is not to have an amazing looking and powerful language but to have fun!
+I might add some fun syntax like `;;;`, `;;` and `;` delimiters and more to make the language sort of like a "challenge" to program in! 
 
 ## Hello World
 ```
@@ -46,7 +47,7 @@ let PI = 3.141	       // let's you change variable but sends warning (ruby-style
 
 ### data types
 ```
-let myint = 1				// integer
+let myint = 1														// integer
 let myfloat = 2.0                       // float
 let myconst = 3.14159265359             // constant
 let mybool = true                       // boolean
@@ -61,11 +62,9 @@ println myarr
 println myarr2
 ```
 
-### defining and using (single-line) functions
-Currently the definition of single-line functions relies on the usage of ruby syntax in the
-scriptblock `{}`. This will be changed as soon as possible so that we can only use `nuni` syntax!
+### defining and using functions
 ```
-fn add = x, y { let sum = x+y; return sum; } // single line function definition
+fn add = x, y { let sum = x+y;;; return sum;;; } // single line function definition
 let sum = add 2, 5
 println sum
 
@@ -77,20 +76,68 @@ println test
 14
 ```
 
-### if-statements
+#### prime? example
 ```
-let i = 2
-if i<2 { println "yes"; } elsif==2 { println "the same!"; } else { println "no"; }
+fn prime? = n { if n<2 ( return false; );;; let ceil = n**0.5;;; for i in 2..ceil [ if n%i==0 ( return false; );;  ];;; return true;;; }
+for x in 0..20 [ println "#{x} = #{prime? x}";; ]
 ```
 ```
-the same!
+0 = false
+1 = false
+2 = true
+3 = true
+4 = false
+5 = true
+6 = false
+7 = true
+8 = false
+9 = false
+10 = false
+11 = true
+12 = false
+13 = true
+14 = false
+15 = false
+16 = false
+17 = true
+18 = false
+19 = true
+20 = false
+```
+
+#### fib example
+```
+fn fib = n { if n<=1 ( return 1; );;; let result = fib(n-1)+fib(n-2);;; return result;;; }
+for i in 0..20 [ println fib i;; ]
+```
+```
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+144
+233
+377
+610
+987
+1597
+2584
+4181
+6765
+10946
 ```
 
 ### loops
 #### for-loops
 ```
-let i = 2
-for n in 0..10 { let prod = i*n; println prod; }
+for i in 0..20 [ if i%2==0 ( println i; );; ]
 ```
 ```
 0
@@ -106,11 +153,51 @@ for n in 0..10 { let prod = i*n; println prod; }
 20
 ```
 
+### if-statements
+```
+let i = 2
+if i<2 ( println "yes"; ) elsif==2 ( println "the same!"; ) else ( println "no"; )
+```
+```
+the same!
+```
+
+### string interpolation / concatenation
+You can just use the Ruby syntax!
+```
+let name = "Nuni"
+let greet = "Hello #{name}!"
+println greet
+println "Goodbye #{name}!"
+```
+```
+Hello Nuni!
+Goodbye Nuni!
+```
+
+### embedding ruby
+```
+println "Hello Nuni"
+# puts "Hello Ruby!"
+# [1, 2, 3, 4].each do |n| puts n end
+println 2+3
+```
+```
+Hello Nuni
+Hello Ruby!
+1
+2
+3
+4
+5
+```
+
 ## Future ideas (by priority)
 fixed plans:
 - [x] SINGLE-LINE function declaration with nuni syntax, Ex:
 - [x] if-else statement
-- [ ] string interpolation / concatenation
+- [x] string interpolation / concatenation (you can just use the ruby `#{your_var}` syntax!)
+- [x] ruby syntax embedding with `#` at the start of line
 - [ ] loops
 	- [ ] while
 	- [x] for

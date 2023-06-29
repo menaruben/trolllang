@@ -1,0 +1,2 @@
+fn prime? = n { if n<2 ( return false; );;; let ceil = n**0.5;;; for i in 2..ceil [ if n%i==0 ( return false; );;  ];;; return true;;; }
+for x in 0..20 [ println "#{x} = #{prime? x}";; ]

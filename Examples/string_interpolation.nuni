@@ -1,0 +1,4 @@
+let name = "Nuni"
+let greet = "Hello #{name}!"
+println greet
+println "Goodbye #{name}!"

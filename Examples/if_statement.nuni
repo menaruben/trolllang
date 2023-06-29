@@ -1,2 +1,2 @@
 let i = 2
-if i<2 { println "yes"; } elsif i==2 { println "the same!"; } else { println "no"; }
+if i<2 ( println "yes"; ) elsif i==2 ( println "the same!"; ) else ( println "no"; )

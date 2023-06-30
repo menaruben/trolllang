@@ -140,10 +140,10 @@ for i in 0..20 [ println fib i;; ]
 #### for-loops
 ```
 for i in 0..5 [ if i%2==0 ( println i; );; ]
-for i in (5).downto(0) [ println i;; ]				// you can even use ruby synatx for the ranges!
+for i in (5).downto(0) [ println i;; ]         // you can even use ruby synatx for the ranges!
 
 let nums = [3.141, 2.7182]
-for i in nums [ println i;; ]									// and iterate through arrays just like ruby!
+for i in nums [ println i;; ]                  // and iterate over arrays just like ruby!
 ```
 ```
 0
@@ -206,6 +206,5 @@ Hello Ruby!
 - [ ] loops
 	- [ ] while
 	- [x] for
-	- [ ] foreach
 - [ ] add option to translate to ruby or to just run the code
 - [ ] importing other troll programms

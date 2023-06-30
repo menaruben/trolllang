@@ -16,6 +16,7 @@ class Parser
     }
 
     @defined_funcs = []
+    @defined_variables = []
     @to_translate = to_translate
     @lines = lines
     @output_file = output_file
@@ -25,6 +26,7 @@ class Parser
   def parse_let(line)
     key, value = line.split("=").map(&:strip)
     var_name = key[4..-1]
+    @defined_variables << var_name
     "#{var_name} = eval('#{value}')\n"
   end
 
@@ -90,6 +92,8 @@ class Parser
     else
       script_block = fields[2..-1]    
     end
+
+    # puts "#{script_block}: #{script_block.instance_of? Array}"
     
     statement_code = []
 
@@ -206,6 +210,8 @@ class Parser
       @keywords[option].call(line)
     elsif @std_funcs.has_key?(option) || @defined_funcs&.include?(option)
       parse_func_usage(line)
+    elsif @defined_variables.include? option
+      "puts #{option}"
     else
       raise "ERROR on line #{@line_idx}: '#{option}' not found"
     end

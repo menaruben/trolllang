@@ -198,6 +198,14 @@ Hello Ruby!
 5
 ```
 
+## using the REPL
+```
+ruby repl.rb
+```
+
+![repl](./imgs/repl.png)
+
+
 ## ideas (by priority)
 - [x] SINGLE-LINE function declaration
 - [x] if-else statement
@@ -206,5 +214,6 @@ Hello Ruby!
 - [ ] loops
 	- [ ] while
 	- [x] for
+- [x] REPL
 - [ ] add option to translate to ruby or to just run the code
 - [ ] importing other troll programms

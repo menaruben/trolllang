@@ -173,7 +173,7 @@ class Parser
     # puts iter_str
     scriptblock_lines = parse_scriptblock_lines(line)
     scriptblock_str = scriptblock_lines.join("; ")
-    for_loop_str = "#{iter_str} #{scriptblock_str} end"
+    for_loop_str = "#{iter_str} #{scriptblock_str} end\n"
     for_loop_str
   end
   

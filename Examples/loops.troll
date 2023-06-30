@@ -1,1 +1,5 @@
-for i in 0..20 [ if i%2==0 ( println i; );; ]
+for i in 0..5 [ if i%2==0 ( println i; );; ]
+for i in (5).downto(0) [ println i;; ]
+
+let nums = [3.141, 2.7182]
+for i in nums [ println i;; ]

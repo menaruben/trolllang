@@ -139,20 +139,24 @@ for i in 0..20 [ println fib i;; ]
 ### loops
 #### for-loops
 ```
-for i in 0..20 [ if i%2==0 ( println i; );; ]
+for i in 0..5 [ if i%2==0 ( println i; );; ]
+for i in (5).downto(0) [ println i;; ]				// you can even use ruby synatx for the ranges!
+
+let nums = [3.141, 2.7182]
+for i in nums [ println i;; ]									// and iterate through arrays just like ruby!
 ```
 ```
 0
 2
 4
-6
-8
-10
-12
-14
-16
-18
-20
+5
+4
+3
+2
+1
+0
+3.141
+2.7182
 ```
 
 ### if-statements

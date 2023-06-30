@@ -47,8 +47,8 @@ let PI = 3.141	       // let's you change variable but sends warning (ruby-style
 
 ### data types
 ```
-let mystr = "Hello World!"				// string
-let myint = 1							// integer
+let mystr = "Hello World!"              // string
+let myint = 1                           // integer
 let myfloat = 2.0                       // float
 let myconst = 3.14159265359             // constant
 let mybool = true                       // boolean
